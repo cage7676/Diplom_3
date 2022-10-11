@@ -1,5 +1,7 @@
 package tests;
 
+import api.UserServices;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.junit4.Tag;
@@ -8,28 +10,28 @@ import model.ProfileGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import services.ForgotPassword;
-import services.Login;
-import services.Main;
-import services.Registration;
+import pages.ForgotPasswordPage;
+import pages.LoginPage;
+import pages.MainPage;
+import pages.RegistrationPage;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.page;
+import java.util.Map;
+
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverConditions.url;
+import static org.junit.Assert.assertTrue;
 
 public class LoginTestCase {
 
-    ProfileForm profile;
+    Map<String, String> user = new UserServices().register();
+    String email = user.get("email");
+    String password = user.get("password");
+    MainPage main;
 
     @Before
     public void setUp() {
-        profile = ProfileGenerator.getRandom();
-        Registration registration = open(Registration.URL, Registration.class);
-        registration.registerNewUser(profile);
-    }
 
-    @After
-    public void tearDown() {
-        Selenide.closeWebDriver();
+        main = open(MainPage.URL, MainPage.class);
     }
 
     @Tag("LoginTestCase")
@@ -37,14 +39,17 @@ public class LoginTestCase {
     @DisplayName("Проверка входа по кнопке «Войти в аккаунт» на главной")
     public void checkLoginOnEntryLoginToYourAccountOnMainPage() {
 
-        Main main = open(Main.URL, Main.class);
-        main.goToLoginPageUsingCentralButton();
+        main
+                .clickLoginButton()
+                .setEmail(email)
+                .setPassword(password)
+                .loginButtonClick();
 
-        Login login = page(Login.class);
-        login.login(profile);
+        boolean button = main.checkoutButtonVisible();
 
-        main = page(Main.class);
-        main.checkUserAuthorised();
+        webdriver().shouldHave(url("http://stellarburgers.nomoreparties.site/"));
+        assertTrue("Button invisible", button);
+
     }
 
     @Tag("LoginTestCase")
@@ -52,14 +57,16 @@ public class LoginTestCase {
     @DisplayName("Проверка входа через кнопку «Личный кабинет»")
     public void checkLoginThroughButtonPersonalAccount() {
 
-        Main main = open(Main.URL, Main.class);
-        main.goToLoginPageUsingButtonFromHeader();
+        main
+                .clickCabinetButton()
+                .setEmail(email)
+                .setPassword(password)
+                .loginButtonClick();
 
-        Login login = page(Login.class);
-        login.login(profile);
+        boolean button = main.checkoutButtonVisible();
 
-        main = page(Main.class);
-        main.checkUserAuthorised();
+        webdriver().shouldHave(url("http://stellarburgers.nomoreparties.site/"));
+        assertTrue("Button invisible", button);
     }
 
     @Tag("LoginTestCase")
@@ -67,14 +74,18 @@ public class LoginTestCase {
     @DisplayName("Проверка входа через кнопку в форме регистрации")
     public void checkLoginThroughButtonInRegistrationForm() {
 
-        Registration registration = open(Registration.URL, Registration.class);
-        registration.goToLoginPageFromRegistrationPage();
+        main
+                .clickLoginButton()
+                .regLinkClick()
+                .goToLoginPageFromRegistrationPage()
+                .setEmail(email)
+                .setPassword(password)
+                .loginButtonClick();
 
-        Login login = page(Login.class);
-        login.login(profile);
+        boolean button = main.checkoutButtonVisible();
 
-        Main main = page(Main.class);
-        main.checkUserAuthorised();
+        webdriver().shouldHave(url("http://stellarburgers.nomoreparties.site/"));
+        assertTrue("Button invisible", button);
     }
 
     @Tag("LoginTestCase")
@@ -82,13 +93,23 @@ public class LoginTestCase {
     @DisplayName("Проверка входа через кнопку в форме восстановления пароля")
     public void checkLoginThroughButtonInPasswordRecoveryForm() {
 
-        ForgotPassword forgotPassword = open(ForgotPassword.URL, ForgotPassword.class);
-        forgotPassword.goLoginPageFromForgotPasswordPage();
+        main
+                .clickLoginButton()
+                .resetPasswordLinkClick()
+                .loginLinkClick()
+                .setEmail(email)
+                .setPassword(password)
+                .loginButtonClick();
 
-        Login login = page(Login.class);
-        login.login(profile);
+        boolean button = main.checkoutButtonVisible();
 
-        Main main = page(Main.class);
-        main.checkUserAuthorised();
+        webdriver().shouldHave(url("http://stellarburgers.nomoreparties.site/"));
+        assertTrue("Button invisible", button);
+    }
+
+    @After
+    public void tearDown() {
+        UserServices.deleteUser();
+        webdriver().driver().close();
     }
 }

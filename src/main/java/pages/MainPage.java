@@ -1,43 +1,114 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
 
     public static final String URL = "http://stellarburgers.nomoreparties.site/";
 
-    @FindBy (how = How.CSS, using = ".AppHeader_header__logo__2D0X2 ~ .AppHeader_header__link__3D_hX ")
-    protected SelenideElement linkToLoginPageFromHeader;
-
-    @FindBy(how = How.CSS,using = ".BurgerConstructor_basket__totalContainer__2Z-ho ~ button")
-    protected SelenideElement linkToLoginPageButton;
-
     @FindBy(how = How.CSS,using = ".AppHeader_header__logo__2D0X2 ~ a")
     protected SelenideElement linkToProfilePage;
-
-    @FindBy (how = How.CSS,using = ".BurgerConstructor_basket__totalContainer__2Z-ho ~ button")
-    protected SelenideElement createOrderButton;
 
     @FindBy (how = How.CSS,using = ".BurgerIngredients_ingredients__1N8v2 h1")
     protected SelenideElement constructorLabel;
 
-    @FindBy(how = How.CSS,using = ".BurgerIngredients_ingredients__1N8v2 .tab_tab__1SPyG:nth-child(1n)")
+    @FindBy(how = How.XPATH, using = ".//span [@class='text text_type_main-default'][text()='Булки']")
     protected SelenideElement bunsTab;
 
-    @FindBy(how = How.CSS,using = ".BurgerIngredients_ingredients__menuContainer__Xu3Mo  > .text:nth-child(1)")
+    @FindBy(how = How.XPATH, using = ".//span[text()='Булки']")
     protected SelenideElement bunsTitle;
 
-    @FindBy(how = How.CSS,using = ".BurgerIngredients_ingredients__1N8v2 .tab_tab__1SPyG:nth-child(2n)")
+    @FindBy(how = How.XPATH, using = ".//span [@class='text text_type_main-default'][text()='Соусы']")
     protected SelenideElement saucesTab;
 
-    @FindBy(how = How.CSS,using = ".BurgerIngredients_ingredients__menuContainer__Xu3Mo  > .text:nth-child(3)")
+    @FindBy(how = How.XPATH, using = ".//span[text()='Соусы']")
     protected SelenideElement saucesTitle;
 
-    @FindBy(how = How.CSS,using = ".BurgerIngredients_ingredients__1N8v2 .tab_tab__1SPyG:nth-child(3n)")
+    @FindBy(how = How.XPATH, using = ".//span [@class='text text_type_main-default'][text()='Начинки']")
     protected SelenideElement fillingsTab;
 
-    @FindBy(how = How.CSS,using = ".BurgerIngredients_ingredients__menuContainer__Xu3Mo  > .text:nth-child(5)")
+    @FindBy(how = How.XPATH, using = ".//span[text()='Начинки']")
     protected SelenideElement fillingsTitle;
+
+    @FindBy(how = How.XPATH, using = ".//button [text()='Войти в аккаунт']")
+    private SelenideElement loginButton;
+
+    @FindBy(how = How.XPATH, using = "//* [@href='/account']")
+    private SelenideElement cabinetButton;
+
+    @FindBy(how = How.XPATH, using = ".//button[text()='Оформить заказ']")
+    private SelenideElement checkout;
+
+    @Step("Клик по кнопке 'Войти в аккаунт'")
+    public LoginPage clickLoginButton() {
+        loginButton.click();
+        return page(LoginPage.class);
+    }
+
+    @Step("Клик по кнопке 'Личный кабинет'")
+    public LoginPage clickCabinetButton() {
+        cabinetButton.click();
+        return page(LoginPage.class);
+    }
+
+    @Step("Перейти на страницу профиля")
+    public LoginPage  goToProfilePage(){
+        linkToProfilePage.click();
+        return page(LoginPage.class);
+    }
+
+    @Step("Нажать на раздел Булки")
+    public MainPage goToBunsClick(){
+        bunsTab.click();
+        return page(MainPage.class);
+    }
+
+    @Step("Проверка видимости раздела Булки")
+    public MainPage checkBunsClickOpen(){
+        bunsTitle.shouldBe(visible);
+        return page(MainPage.class);
+    }
+
+    @Step("Нажать на раздел Соусы")
+    public MainPage goToSaucesClick(){
+        saucesTab.click();
+        return page(MainPage.class);
+    }
+
+    @Step("Проверка видимости раздела Соусы")
+    public MainPage checkSaucesClickOpen(){
+        saucesTitle.shouldBe(visible);
+        return page(MainPage.class);
+    }
+
+    @Step("Нажать на раздел Начинки")
+    public MainPage goToFillingsClick(){
+        fillingsTab.click();
+        return page(MainPage.class);
+    }
+
+    @Step("Проверка видимости раздела Начинки")
+    public MainPage checkFillingsClickOpen(){
+        fillingsTitle.shouldBe(visible);
+        return page(MainPage.class);
+    }
+
+    @Step("Проверка видимости блока Конструктор")
+    public LoginPage checkConstructorBlock(){
+        constructorLabel.shouldBe(visible);
+        return page(LoginPage.class);
+    }
+    @Step("Отображение кнопки Оформить заказ")
+    public boolean checkoutButtonVisible() {
+        checkout.is(Condition.visible);
+        return true;
+    }
+
 }

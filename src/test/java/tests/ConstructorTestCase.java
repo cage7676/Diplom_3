@@ -1,35 +1,35 @@
 package tests;
 
+import api.UserServices;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.junit4.Tag;
-import model.ProfileForm;
-import model.ProfileGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import services.Login;
-import services.Main;
-import services.Profile;
-import services.Registration;
+import pages.MainPage;
+import pages.ProfilePage;
+
+
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 
 public class ConstructorTestCase {
 
-    ProfileForm profile;
-
+    Map<String, String> user = new UserServices().register();
+    String email = user.get("email");
+    String password = user.get("password");
+    MainPage main;
     @Before
     public void setUp() {
-        profile = ProfileGenerator.getRandom();
-        Registration registration = open(Registration.URL, Registration.class);
-        registration.registerNewUser(profile);
-    }
-
-    @After
-    public void tearDown() {
-        Selenide.closeWebDriver();
+        main = open(MainPage.URL, MainPage.class);
+        main
+                .clickLoginButton()
+                .setEmail(email)
+                .setPassword(password)
+                .loginButtonClick();
     }
 
     @Tag("ConstructorTestCase")
@@ -37,16 +37,11 @@ public class ConstructorTestCase {
     @DisplayName("Проверка перехода по клику на «Конструктор» и на логотип Stellar Burgers")
     public void checkingTransitionClickOnConstructorAndOnLogo() {
 
-        Login loginClass = open(Login.URL, Login.class);
-        loginClass.login(profile);
-
-        Main main = page(Main.class);
         main.goToProfilePage();
 
-        Profile profile = page(Profile.class);
+        ProfilePage profile = page(ProfilePage.class);
         profile.goToLogoBuilderPage();
 
-        main = page(Main.class);
         main.checkConstructorBlock();
 
     }
@@ -56,20 +51,19 @@ public class ConstructorTestCase {
     @DisplayName("Проверка перехода в раздел «Булки»")
     public void checkTransitionToBunsSection() {
 
-        Main main = open(Main.URL, Main.class);
-        main.goToFillingsClick();
-        main.goToBunsClick();
-        main.checkBunsClickOpen();
+        main
+                .goToFillingsClick()
+                .goToBunsClick()
+                .checkBunsClickOpen();
     }
 
     @Tag("ConstructorTestCase")
     @Test
     @DisplayName("Проверка перехода в раздел «Соусы»")
     public void checkTransitionToSaucesSection() {
-
-        Main main = open(Main.URL, Main.class);
-        main.goToSaucesClick();
-        main.checkSaucesClickOpen();
+        main
+                .goToSaucesClick()
+                .checkSaucesClickOpen();
     }
 
     @Tag("ConstructorTestCase")
@@ -77,8 +71,15 @@ public class ConstructorTestCase {
     @DisplayName("Проверка перехода в раздел «Начинки»")
     public void checkTransitionToFillingsSection() {
 
-        Main main = open(Main.URL, Main.class);
-        main.goToFillingsClick();
-        main.checkFillingsClickOpen();
+        main
+                .goToFillingsClick()
+                .checkFillingsClickOpen();
+    }
+
+    @After
+    public void tearDown() {
+
+        Selenide.closeWebDriver();
+        UserServices.deleteUser();
     }
 }
