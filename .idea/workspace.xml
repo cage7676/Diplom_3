@@ -4,27 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fd19323-3847-482c-8038-44db634e9eda" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/Specification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/Tokens.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/UserPOJO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/UserRegister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/UserServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="6fd19323-3847-482c-8038-44db634e9eda" name="Changes" comment="Правки">
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/Credentials.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ForgotPasswordPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ForgotPasswordPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/Specification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Specification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/Tokens.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/UserPOJO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/UserRegister.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/UserServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/UserServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ForgotPasswordPage.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ProfilePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/ProfilePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pages/RegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/RegistrationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/ForgotPassword.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/Login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/Profile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/Registration.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/ConstructorTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/ConstructorTestCase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/LoginTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/LoginTestCase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/ProfileTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/ProfileTestCase.java" afterDir="false" />
@@ -46,8 +38,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/api/UserRegister.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/api/UserServices.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/api/pojo/Credentials.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/pages/LoginPage.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/pages/MainPage.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/pages/ProfilePage.java" root0="FORCE_HIGHLIGHTING" />
@@ -77,7 +69,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/p.aleksandrov/Pictures/Diplom_Pavel_Aleksandrov_9/Diplom_Pavel_Aleksandrov_9/Diplom_3/src/main/java/model"
+    "last_opened_file_path": "C:/Users/p.aleksandrov/Downloads/3/QA-java-diplom-3-develop3"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -92,9 +84,25 @@
     <option name="myCommands">
       <command value="mvn clean" />
       <command value="mvn test" />
+      <command value="mvn clean test" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ProfileTestCase.checkExitByClickLogoutButtonInYourAccount">
+  <component name="RunManager" selected="JUnit.RegistrationTestCase">
+    <configuration name="ConstructorTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.ConstructorTestCase" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoginTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Diplom_3" />
       <extension name="coverage">
@@ -110,39 +118,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTestCase.checkLoginOnEntryLoginToYourAccountOnMainPage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Diplom_3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.LoginTestCase" />
-      <option name="METHOD_NAME" value="checkLoginOnEntryLoginToYourAccountOnMainPage" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginTestCase.checkLoginThroughButtonPersonalAccount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Diplom_3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.LoginTestCase" />
-      <option name="METHOD_NAME" value="checkLoginThroughButtonPersonalAccount" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProfileTestCase.checkExitByClickLogoutButtonInYourAccount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfileTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Diplom_3" />
       <extension name="coverage">
         <pattern>
@@ -152,13 +128,12 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.ProfileTestCase" />
-      <option name="METHOD_NAME" value="checkExitByClickLogoutButtonInYourAccount" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProfileTestCase.checkTransitionByClickingOnPersonalAccount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Diplom_3" />
       <extension name="coverage">
         <pattern>
@@ -167,8 +142,23 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.ProfileTestCase" />
-      <option name="METHOD_NAME" value="checkTransitionByClickingOnPersonalAccount" />
+      <option name="MAIN_CLASS_NAME" value="tests.RegistrationTestCase" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegistrationTestCase.checkSuccessfulRegistration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.RegistrationTestCase" />
+      <option name="METHOD_NAME" value="checkSuccessfulRegistration" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -176,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProfileTestCase.checkExitByClickLogoutButtonInYourAccount" />
-        <item itemvalue="JUnit.ProfileTestCase.checkTransitionByClickingOnPersonalAccount" />
+        <item itemvalue="JUnit.RegistrationTestCase" />
+        <item itemvalue="JUnit.ProfileTestCase" />
         <item itemvalue="JUnit.LoginTestCase" />
-        <item itemvalue="JUnit.LoginTestCase.checkLoginThroughButtonPersonalAccount" />
-        <item itemvalue="JUnit.LoginTestCase.checkLoginOnEntryLoginToYourAccountOnMainPage" />
+        <item itemvalue="JUnit.ConstructorTestCase" />
+        <item itemvalue="JUnit.RegistrationTestCase.checkSuccessfulRegistration" />
       </list>
     </recent_temporary>
   </component>
@@ -193,6 +183,14 @@
       <option name="presentableId" value="Default" />
       <updated>1665410927707</updated>
     </task>
+    <task id="LOCAL-00001" summary="Правки">
+      <created>1665509649547</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665509649547</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,5 +203,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Правки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Правки" />
   </component>
 </project>

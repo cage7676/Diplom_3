@@ -1,5 +1,7 @@
 package tests;
 
+import api.pojo.User;
+import api.pojo.Credentials;
 import api.UserServices;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
@@ -11,24 +13,32 @@ import pages.MainPage;
 import pages.ProfilePage;
 
 
-import java.util.Map;
-
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
+import static org.apache.hc.core5.http.HttpStatus.SC_OK;
 
 public class ConstructorTestCase {
 
-    Map<String, String> user = new UserServices().register();
-    String email = user.get("email");
-    String password = user.get("password");
+    private Credentials credentials;
+    private UserServices userClient;
+    private String accessToken;
+
     MainPage main;
     @Before
     public void setUp() {
+        userClient = new UserServices();
+        User user = User.randomUser();
+        credentials = Credentials.getCredentials(user);
+
+        accessToken = userClient.accessToken(userClient.register(user)
+                .assertThat()
+                .statusCode(SC_OK));
+
         main = open(MainPage.URL, MainPage.class);
         main
                 .clickLoginButton()
-                .setEmail(email)
-                .setPassword(password)
+                .setEmail(credentials.getEmail())
+                .setPassword(credentials.getPassword())
                 .loginButtonClick();
     }
 
@@ -78,8 +88,7 @@ public class ConstructorTestCase {
 
     @After
     public void tearDown() {
-
+        userClient.deleteUser(accessToken);
         Selenide.closeWebDriver();
-        UserServices.deleteUser();
     }
 }

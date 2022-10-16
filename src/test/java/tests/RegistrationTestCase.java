@@ -1,14 +1,12 @@
 package tests;
 
+import api.pojo.Credentials;
 import api.UserServices;
-import com.codeborne.selenide.Selenide;
-import com.github.javafaker.Faker;
 import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.junit4.Tag;
 import model.ProfileForm;
 import model.ProfileGenerator;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import pages.LoginPage;
@@ -16,17 +14,22 @@ import pages.MainPage;
 import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Selenide.*;
+import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.Assert.assertTrue;
 
 public class RegistrationTestCase {
 
+    private UserServices userServices;
+    private String accessToken;
     private ProfileForm profile;
+
     RegistrationPage registration;
     LoginPage login;
     MainPage mainPage;
 
     @Before
     public void setUp() {
+        userServices = new UserServices();
         mainPage = open(MainPage.URL, MainPage.class);
         registration = open(RegistrationPage.URL, RegistrationPage.class);
         profile = ProfileGenerator.getRandom();
@@ -41,7 +44,10 @@ public class RegistrationTestCase {
 
         registration.registerNewUser(profile);
         login.loginPage();
-
+        Credentials credentials = new Credentials(profile.getEmail(), profile.getPassword());
+        accessToken = userServices.accessToken(userServices.login(credentials)
+                .assertThat()
+                .statusCode(SC_OK));
     }
 
     @Tag("RegistrationTestCase")
@@ -57,6 +63,11 @@ public class RegistrationTestCase {
 
     @After
     public void tearDown() {
-        webdriver().driver().close();
+
+        if (accessToken != null) {
+            userServices.deleteUser(accessToken);
+        }
+    webdriver().driver().close();
+
     }
 }

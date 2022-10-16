@@ -1,36 +1,36 @@
 package tests;
 
+import api.pojo.User;
+import api.pojo.Credentials;
 import api.UserServices;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.junit4.Tag;
-import model.ProfileForm;
-import model.ProfileGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import pages.ForgotPasswordPage;
-import pages.LoginPage;
 import pages.MainPage;
-import pages.RegistrationPage;
-
-import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.url;
+import static org.apache.hc.core5.http.HttpStatus.SC_OK;
 import static org.junit.Assert.assertTrue;
 
 public class LoginTestCase {
+    private Credentials credentials;
+    private UserServices userClient;
+    private String accessToken;
 
-    Map<String, String> user = new UserServices().register();
-    String email = user.get("email");
-    String password = user.get("password");
     MainPage main;
 
     @Before
     public void setUp() {
+        userClient = new UserServices();
+        User user = User.randomUser();
+        credentials = Credentials.getCredentials(user);
 
+        accessToken = userClient.accessToken(userClient.register(user)
+                .assertThat()
+                .statusCode(SC_OK));
         main = open(MainPage.URL, MainPage.class);
     }
 
@@ -41,8 +41,8 @@ public class LoginTestCase {
 
         main
                 .clickLoginButton()
-                .setEmail(email)
-                .setPassword(password)
+                .setEmail(credentials.getEmail())
+                .setPassword(credentials.getPassword())
                 .loginButtonClick();
 
         boolean button = main.checkoutButtonVisible();
@@ -59,8 +59,8 @@ public class LoginTestCase {
 
         main
                 .clickCabinetButton()
-                .setEmail(email)
-                .setPassword(password)
+                .setEmail(credentials.getEmail())
+                .setPassword(credentials.getPassword())
                 .loginButtonClick();
 
         boolean button = main.checkoutButtonVisible();
@@ -78,8 +78,8 @@ public class LoginTestCase {
                 .clickLoginButton()
                 .regLinkClick()
                 .goToLoginPageFromRegistrationPage()
-                .setEmail(email)
-                .setPassword(password)
+                .setEmail(credentials.getEmail())
+                .setPassword(credentials.getPassword())
                 .loginButtonClick();
 
         boolean button = main.checkoutButtonVisible();
@@ -97,8 +97,8 @@ public class LoginTestCase {
                 .clickLoginButton()
                 .resetPasswordLinkClick()
                 .loginLinkClick()
-                .setEmail(email)
-                .setPassword(password)
+                .setEmail(credentials.getEmail())
+                .setPassword(credentials.getPassword())
                 .loginButtonClick();
 
         boolean button = main.checkoutButtonVisible();
@@ -109,7 +109,7 @@ public class LoginTestCase {
 
     @After
     public void tearDown() {
-        UserServices.deleteUser();
+        userClient.deleteUser(accessToken);
         webdriver().driver().close();
     }
 }

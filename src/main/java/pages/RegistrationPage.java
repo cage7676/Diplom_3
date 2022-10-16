@@ -63,5 +63,4 @@ public class RegistrationPage {
     public boolean checkInvalidPasswordTextDisplayed() {
         return invalidPasswordText.isDisplayed();
     }
-
 }

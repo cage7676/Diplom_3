@@ -16,7 +16,7 @@ public class MainPage {
     @FindBy(how = How.CSS,using = ".AppHeader_header__logo__2D0X2 ~ a")
     protected SelenideElement linkToProfilePage;
 
-    @FindBy (how = How.CSS,using = ".BurgerIngredients_ingredients__1N8v2 h1")
+    @FindBy(how = How.XPATH, using = "//p[text()='Конструктор']")
     protected SelenideElement constructorLabel;
 
     @FindBy(how = How.XPATH, using = ".//span [@class='text text_type_main-default'][text()='Булки']")
