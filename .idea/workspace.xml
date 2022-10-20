@@ -4,23 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fd19323-3847-482c-8038-44db634e9eda" name="Changes" comment="Правки">
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/Credentials.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/User.java" afterDir="false" />
+    <list default="true" id="6fd19323-3847-482c-8038-44db634e9eda" name="Changes" comment="Правки №2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/Specification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Specification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/Tokens.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/UserPOJO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/UserRegister.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/UserServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/UserServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/ForgotPasswordPage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/RegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/RegistrationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/ConstructorTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/ConstructorTestCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/LoginTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/LoginTestCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/ProfileTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/ProfileTestCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/RegistrationTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/RegistrationTestCase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665509649547</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Правки №2">
+      <created>1665932729681</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665932729681</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,6 +198,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Правки" />
-    <option name="LAST_COMMIT_MESSAGE" value="Правки" />
+    <MESSAGE value="Правки №2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Правки №2" />
   </component>
 </project>

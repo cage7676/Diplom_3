@@ -15,6 +15,7 @@ import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Selenide.*;
 import static org.apache.http.HttpStatus.SC_OK;
+import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.junit.Assert.assertTrue;
 
 public class RegistrationTestCase {
@@ -58,7 +59,11 @@ public class RegistrationTestCase {
         profile.setPassword("false");
         registration.registerNewUser(profile);
         assertTrue(registration.checkInvalidPasswordTextDisplayed());
-
+        assertTrue(registration.checkInvalidPasswordTextDisplayed());
+        Credentials credentials = new Credentials(profile.getEmail(), profile.getPassword());
+        accessToken = userServices.accessToken(userServices.login(credentials)
+                .assertThat()
+                .statusCode(SC_UNAUTHORIZED));
     }
 
     @After

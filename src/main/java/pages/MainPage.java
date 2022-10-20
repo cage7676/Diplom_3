@@ -71,9 +71,12 @@ public class MainPage {
     }
 
     @Step("Проверка видимости раздела Булки")
-    public MainPage checkBunsClickOpen(){
-        bunsTitle.shouldBe(visible);
-        return page(MainPage.class);
+    public boolean checkBunsClickOpen() {
+        if (bunsTitle.getAttribute("class").contains("tab_tab__1SPyG tab_tab_type_current__2BEPc")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Step("Нажать на раздел Соусы")
@@ -83,9 +86,12 @@ public class MainPage {
     }
 
     @Step("Проверка видимости раздела Соусы")
-    public MainPage checkSaucesClickOpen(){
-        saucesTitle.shouldBe(visible);
-        return page(MainPage.class);
+    public boolean checkSaucesClickOpen(){
+        if (saucesTitle.getAttribute("class").contains("tab_tab__1SPyG tab_tab_type_current__2BEPc")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Step("Нажать на раздел Начинки")
@@ -95,9 +101,12 @@ public class MainPage {
     }
 
     @Step("Проверка видимости раздела Начинки")
-    public MainPage checkFillingsClickOpen(){
-        fillingsTitle.shouldBe(visible);
-        return page(MainPage.class);
+    public boolean checkFillingsClickOpen(){
+        if (fillingsTitle.getAttribute("class").contains("tab_tab__1SPyG tab_tab_type_current__2BEPc")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Step("Проверка видимости блока Конструктор")
